@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-todo"
+    }
+  },
+  "defaultProject": "angular-todo",
+  "cli": {
+    "analytics": "842eacab-9140-4d89-858b-ff51cc383250"
+  }
 }
