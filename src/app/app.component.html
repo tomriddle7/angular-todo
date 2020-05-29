@@ -20,9 +20,9 @@
     <li class="todo-item">
         <div class="input-group">
           <span class="input-group-text">
-            <input type="checkbox" aria-label="..." [checked]="todo.completed">
+            <input type="checkbox" aria-label="..." [(ngModel)]="todo.completed">
           </span>
-          <input type="text" class="form-control" aria-label="..." value={{todo.title}}>
+          <input type="text" class="form-control" aria-label="..." [(ngModel)]="todo.title">
           <div class="input-group-btn">
             <button class="btn btn-danger" (click)="removeTodo(todo.id)">Remove</button>
           </div>
@@ -36,5 +36,4 @@
     <button class="btn btn-light" (click)="filterTodo('')">All</button>
     <button class="btn btn-light" (click)="clearCompleted()">Clear Completed</button>
   </div>
-
 </div>
