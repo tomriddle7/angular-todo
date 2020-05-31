@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
+interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  todos = [{
+  todos: Todo[] = [{
     id: 1,
     title: '요가 수행하기',
     completed: false
@@ -17,7 +23,7 @@ export class AppComponent {
     completed: true
   }];
   checkoutForm;
-  statusFilter;
+  statusFilter: string;
   angularTodos = this.todos;
 
   constructor(
@@ -28,14 +34,14 @@ export class AppComponent {
     });
   }
 
-  addTodo = function (todoTitle) {
+  addTodo = function(todoTitle) {
     todoTitle = todoTitle.newTodo.trim();
     if (!todoTitle) return;
 
-    let newId = !this.todos.length ?
+    const newId: number = !this.todos.length ?
         1 : this.todos[this.todos.length - 1].id + 1;
 
-    let newTodo = {
+    const newTodo: Todo = {
       id: newId,
       title: todoTitle,
       completed: false
@@ -45,15 +51,15 @@ export class AppComponent {
     this.angularTodos = this.todos;
   };
 
-  removeTodo = function (id) {
+  removeTodo = function(id) {
     if (!id) return;
 
     // 배열에서 제거
-    this.todos = this.todos.filter(todo => todo.id != id);
+    this.todos = this.todos.filter(todo => todo.id !== id);
     this.angularTodos = this.todos;
-  }
+  };
 
-  filterTodo = function (filter: string) {
+  filterTodo = function(filter: string) {
     this.statusFilter = filter;
     if(this.statusFilter === 'completed') {
       this.angularTodos = this.todos.filter(todo => todo.completed === true);
@@ -62,11 +68,11 @@ export class AppComponent {
     } else {
       this.angularTodos = this.todos;
     }
-  }
+  };
 
   clearCompleted = function() {
-    let incompleteTodos = this.todos.filter(todo => todo.completed === false);
+    const incompleteTodos = this.todos.filter(todo => todo.completed === false);
     this.todos = incompleteTodos;
     this.angularTodos = this.todos;
-  }
+  };
 }
